@@ -54,6 +54,9 @@ if __name__ == "__main__":
     energenie.fsk_router.when_incoming(incoming)
     print("Logging to file:%s" % Logger.LOG_FILENAME)
 
+    for device in energenie.registry.devices():
+        energenie.fsk_router.add((device.get_manufacturer_id(),device.get_product_id(),device.get_device_id()),device)
+
     try:
         while True:
             energy_monitor_loop()
